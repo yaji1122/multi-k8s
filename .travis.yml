@@ -14,10 +14,10 @@ before_install:
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud components update kubectl
   - gcloud auth activate-service-account --key-file service-account.json
-  - gcloud config set project multi-k8s-322608
-  - gcloud config set compute/zone asia-east1-a
-  - gcloud container clusters get-credentials multi-cluster
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - gcloud config set project multi-k8s-322608 #same line run in gcloud shell
+  - gcloud config set compute/zone asia-east1-a #same line run in gcloud shell
+  - gcloud container clusters get-credentials multi-cluster #same line run in gcloud shell
+  - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
   - docker build -t yajilin/react-test -f ./client/Dockerfile.dev ./client
 script:
   - docker run -e CI=true yaji/react-test npm test
