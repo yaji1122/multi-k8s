@@ -17,7 +17,7 @@ before_install:
   - gcloud config set project multi-k8s-322608 #same line run in gcloud shell
   - gcloud config set compute/zone asia-east1-a #same line run in gcloud shell
   - gcloud container clusters get-credentials multi-cluster #same line run in gcloud shell
-  - echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t yajilin/react-test -f ./client/Dockerfile.dev ./client
 script:
   - docker run -e CI=true yaji/react-test npm test
